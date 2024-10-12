@@ -3,9 +3,11 @@ package org.launchcode.codingevents.models;
 public class Event {
 
     private String name;
+    private String desc;
 
-    public Event(String name) {
+    public Event(String name,String desc) {
         this.name = name;
+        this.desc = desc;
     }
 
     public String getName() {
@@ -14,6 +16,14 @@ public class Event {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     @Override
