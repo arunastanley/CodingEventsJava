@@ -23,14 +23,17 @@ public class Event {
     private String email;
 
     public Event(String name,String desc,String email) {
+        this();
         this.name = name;
         this.desc = desc;
         this.email = email;
+
+    }
+
+    public Event(){
         this.id = nextId;
         nextId++;
     }
-
-    public Event(){}
 
     public String getName() {
         return name;
