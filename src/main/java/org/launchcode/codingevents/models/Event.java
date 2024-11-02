@@ -35,7 +35,6 @@ public class Event extends AbstractEntity{
     private EventType type;
 
     public Event(String name, String description, String contactEmail, EventType type) {
-        super();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
