@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 
+import java.util.Optional;
+
 /**
  * Created by Chris Bay
  */
@@ -24,9 +26,21 @@ public class EventController {
     private EventCategoryRepository eventCategoryRepository;
 
     @GetMapping
-    public String displayAllEvents(Model model) {
-        model.addAttribute("title", "All Events");
-        model.addAttribute("events", eventRepository.findAll());
+    public String displayEvents(@RequestParam(required = false) Integer categoryId, Model model) {
+        if(categoryId == null) {
+            model.addAttribute("title", "All Events");
+            model.addAttribute("events", eventRepository.findAll());
+        }else{
+            Optional<EventCategory> result = eventCategoryRepository.findById(categoryId);
+            if(result.isEmpty()){
+                model.addAttribute("title", "Invalid category id: "+ categoryId);
+            }else{
+                EventCategory category = result.get();
+                model.addAttribute("title", "Events with category id: "+ categoryId);
+                model.addAttribute("events", category.getEvents());
+            }
+        }
+
         return "events/index";
     }
 
